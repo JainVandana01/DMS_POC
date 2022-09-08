@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Header from '../components/Header';
 import Grid from '../components/Grid/Grid';
 
+import {fetchOrder, getStaticProps} from "../api/fetchFunction"
+
 const Home: NextPage = () => {
   const bookingItems= [[
     {label: 'Pre-Booking', id: 1}, 
@@ -44,6 +46,10 @@ const Home: NextPage = () => {
     {label: 'Stock Management', id:4},
     {label: 'Sales Masters', id:5}
   ];
+
+  const data= getStaticProps();
+
+  console.log(data)
   return (
     <main className="relative h-screen overflow-y-scroll">
       <Header/>
