@@ -64,7 +64,6 @@ const Dashboard: NextPage = () => {
 
   return (
     <main className="relative h-screen overflow-y-scroll">
-      <Header />
       <div className="flex h-100 pt-100">
         <h2 className="text-xl font-bold p-4">Sales</h2>
       </div>
