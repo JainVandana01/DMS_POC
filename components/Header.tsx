@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => (
   <div className="sticky flex top-0 z-40 w-full h-24 bg-zinc-900">
