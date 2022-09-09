@@ -54,21 +54,29 @@ function Orders() {
             <button className="buttonStyle" onClick={(e) => __handleSearch(e)}>
               {"Search"}
             </button>
-            <button className="dashbord-header-btn" onClick={(e) => __handleSearch(e)}>
+            <button
+              className="dashbord-header-btn"
+              onClick={(e) => __handleSearch(e)}
+            >
               {"Filter"}
             </button>
           </div>
 
           <div className="dashbord-header-container">
-            <button className="dashbord-header-btn" onClick={(e) => __handleSearch(e)}>
+            <button
+              className="dashbord-header-btn"
+              onClick={(e) => __handleSearch(e)}
+            >
               {"Add"}
             </button>
-            <button className="dashbord-header-btn" onClick={(e) => __handleSearch(e)}>
+            <button
+              className="dashbord-header-btn"
+              onClick={(e) => __handleSearch(e)}
+            >
               {"Delete"}
             </button>
           </div>
         </div>
-        
 
         <table className="table-fixed">
           <thead>

@@ -1,9 +1,11 @@
 import axios from "axios";
-    
+
 async function fetchPosts() {
-    // const { data } = await axios.get('https://apimocha.com/orderbooking/orderlist')
-    const { data } = await axios.get('https://jsonplaceholder.typicode.com/users')
-    return data
+  // const { data } = await axios.get('https://apimocha.com/orderbooking/orderlist')
+  const { data } = await axios.get(
+    "https://jsonplaceholder.typicode.com/users"
+  );
+  return data;
 }
-    
+
 export default fetchPosts;
