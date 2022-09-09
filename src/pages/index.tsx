@@ -18,6 +18,11 @@ const App = () => {
           <a>Home</a>
         </Link>
       </li>
+      <li>
+        <Link href="/dashboard">
+          <a>Dashboard</a>
+        </Link>
+      </li>
     </ul>
   );
 };
