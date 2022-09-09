@@ -1,3 +1,5 @@
+import type { NextPage } from "next";
+import Dashboard from "./dashboard";
 import Link from "next/link";
 
 const App = () => {
@@ -20,6 +22,9 @@ const App = () => {
       </li>
     </ul>
   );
+
+const Home: NextPage = () => {
+  return <Dashboard />;
 };
 
 export default App;
