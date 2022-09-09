@@ -1,12 +1,24 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { atom, useAtom } from "jotai";
+import type { NextPage } from "next";
 import Image from "next/image";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React from "react";
+import { loginData } from "../store";
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+const usernameAtom = atom<string>("");
+const passwordAtom = atom<string>("");
+const showPasswordAtom = atom<boolean>(false);
+
+const Login: NextPage = () => {
+  const [username, setUsername] = useAtom(usernameAtom);
+  const [password, setPassword] = useAtom(passwordAtom);
+  const [showPassword, setShowPassword] = useAtom(showPasswordAtom);
+
+  const router = useRouter();
+
+  const [, setLoginData] = useAtom(loginData);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -16,6 +28,12 @@ const Login = () => {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
+  };
+
+  const onLoginClick = (e: any) => {
+    setLoginData({ username, password });
+    e.preventDefault();
+    router.push("/home");
   };
 
   return (
@@ -49,8 +67,8 @@ const Login = () => {
             id="outlined-basic"
             label="Username"
             variant="outlined"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             fullWidth
             style={{ marginTop: 24 }}
           />
@@ -96,6 +114,7 @@ const Login = () => {
               padding: 12,
               borderRadius: 8,
             }}
+            onClick={onLoginClick}
           >
             <div style={{ color: "white" }}>LOGIN</div>
           </button>

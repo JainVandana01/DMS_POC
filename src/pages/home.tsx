@@ -1,7 +1,10 @@
+import { useAtom } from "jotai";
 import type { NextPage } from "next";
 import Link from "next/link";
+import { useEffect } from "react";
 import Grid from "../components/Grid/Grid";
 import Header from "../components/Header";
+import { loginData } from "../store";
 
 const Home: NextPage = () => {
   const bookingItems = [
@@ -38,6 +41,13 @@ const Home: NextPage = () => {
       { label: "Targets", id: 4 },
     ],
   ];
+
+  const [{ username, password }] = useAtom(loginData);
+
+  useEffect(() => {
+    console.log("usernameusername : ", username, password);
+  }, [username, password]);
+
   const titles = [
     { label: "Booking Management", id: 1 },
     { label: "Exception Management", id: 2 },
