@@ -1,7 +1,5 @@
-import type { NextPage } from 'next';
-import Link from 'next/link';
-import Header from '../components/Header';
-import Grid from '../components/Grid/Grid';
+import type { NextPage } from "next";
+import App from "./app";
 
 const Home: NextPage = () => {
   const bookingItems= [[
@@ -67,4 +65,6 @@ const Home: NextPage = () => {
   )
 }
 
+  return <App />;
+};
 export default Home;
