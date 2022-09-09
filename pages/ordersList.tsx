@@ -1,17 +1,8 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import Header from "../components/Header";
 import Grid from "../components/Grid/Grid";
 
-import { fetchOrderList } from "../api/fetchFunction";
-
-import { useQuery } from "@tanstack/react-query";
-
-const Dashboard: NextPage = () => {
-  const { data, error, isError, isLoading } = useQuery(
-    ["order"],
-    fetchOrderList
-  );
+const OrdersList: NextPage = () => {
   const bookingItems = [
     [
       { label: "Pre-Booking", id: 1 },
@@ -53,42 +44,29 @@ const Dashboard: NextPage = () => {
     { label: "Stock Management", id: 4 },
     { label: "Sales Masters", id: 5 },
   ];
-
-  //const data = getStaticProps();
-
-  if (isLoading) return <div>Loading...</div>;
-  if (!data) return <div>No Data!</div>;
-  if (isError) return <div>Error!</div>;
-
-  console.log(data.name);
-
   return (
     <main className="relative h-screen overflow-y-scroll">
-      <Header />
       <div className="flex h-100 pt-100">
         <h2 className="text-xl font-bold p-4">Sales</h2>
       </div>
       {titles
         ? titles.map((titleName, index) => (
-            <div key={titleName.id}>
-              <Grid className="p-4 max-w-7xl auto" title={titleName.label}>
-                {bookingItems
-                  ? bookingItems[index].map((item) => (
-                      <Link key={item.id} href="/ordersList">
-                        <div className="cursor-pointer border rounded-md hover:opacity-80 duration-300 hover:border-blue-700 hover:bg-blue-50 hover:rounded-md">
-                          <div className="flex text-sm p-2 items-stretch md:items-center">
-                            {item.label}
-                          </div>
+            <Grid className="p-4 max-w-7xl auto" title={titleName.label}>
+              {bookingItems
+                ? bookingItems[index].map((item) => (
+                    <Link key={item.id} href="/posts/first">
+                      <div className="cursor-pointer border rounded-md hover:opacity-80 duration-300 hover:border-blue-700 hover:bg-blue-50 hover:rounded-md">
+                        <div className="flex text-sm p-2 items-stretch md:items-center">
+                          {item.label}
                         </div>
-                      </Link>
-                    ))
-                  : null}
-              </Grid>
-            </div>
+                      </div>
+                    </Link>
+                  ))
+                : null}
+            </Grid>
           ))
         : null}
     </main>
   );
 };
-
-export default Dashboard;
+export default OrdersList;
