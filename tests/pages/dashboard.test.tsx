@@ -1,37 +1,41 @@
 import { it } from "node:test";
 import React from "react";
 import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
+import Dashboard from "../../pages/dashboard";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { fetchOrderList } from "../../api/fetchFunction";
+import axios from "axios";
 
-const MockData = [
-  { label: "Pre-Booking", id: 1 },
-  { label: "Order-Booking", id: 2 },
-  { label: "Payment Receipts", id: 3 },
-  { label: "Booking Follow-up", id: 4 },
-  { label: "Contract Managment", id: 5 },
-  { label: "Statement of Account", id: 6 },
-  { label: "Allotment", id: 7 },
-  { label: "PDI", id: 8 },
-];
+const queryClient = new QueryClient();
+jest.mock("axios");
 
-describe("The dashboard Page", () => {
-  // it("Dashboard Page renders correctly", () => {
-  //   const { container } = render(<Home />);
+describe("describe dashboard page", () => {
+  test("renders the home page", () => {
+    <QueryClientProvider client={queryClient}>
+      render(
+      <Dashboard />
+      );
+    </QueryClientProvider>;
+  });
+});
+describe("fetch order list", () => {
+  it("fetches successfully data from an API", async () => {
+    const data = { name: "Starlink 4-2 (v1.5) & Blue Walker 3" };
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue(
+      data
+    );
 
-  //   // const heading = screen.getByRole("heading", {
-  //   //   name: /welcome to next\.js!/i,
-  //   // });
+    await expect(fetchOrderList).resolves.toEqual(data);
+  });
 
-  //   // expect(heading).toBeInTheDocument();
+  it("fetches erroneously data from an API", async () => {
+    const errorMessage = "Network Error";
 
-  //   // expect(container).toMatchSnapshot();
-  // });
-  it("render order list correctly", () => {
-    jest.mock("react-query", () => ({
-      useQuery: jest.fn().mockReturnValue({
-        data: { ...MockData },
-        isLoading: false,
-        error: {},
-      }),
-    }));
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockRejectedValue(
+      new Error(errorMessage)
+    );
+
+    await expect(fetchOrderList).rejects.toThrow(errorMessage);
   });
 });
