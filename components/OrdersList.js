@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import all_orders from "../constants/orders";
 import { calculateRange, sliceData } from "../utils/table-pagination";
-import Header from "./Header";
 import Image from "next/image";
 import fetchApi from '../utils/FetchApi';
 import { useQuery } from "react-query";
@@ -64,25 +63,21 @@ const OrdersList = () => {
                           Customer name
                         </th>
                         <th
-                          scope="col"
                           className="text-lg font-large text-black-900 text-left"
                         >
                           Customer Id
                         </th>
                         <th
-                          scope="col"
                           className="text-lg font-large text-black-900 text-left"
                         >
                           Order number
                         </th>
                         <th
-                          scope="col"
                           className="text-lg font-large text-black-900 text-left"
                         >
                           Enquiry Id
                         </th>
                         <th
-                          scope="col"
                           className="text-lg font-large text-black-900 text-left"
                         >
                           Order date
