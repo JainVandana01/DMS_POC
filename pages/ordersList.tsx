@@ -54,7 +54,7 @@ const OrdersList: NextPage = () => {
             <Grid className="p-4 max-w-7xl auto" title={titleName.label}>
               {bookingItems
                 ? bookingItems[index].map((item) => (
-                    <Link key={item.id} href="/posts/first">
+                    <Link key={item.id} href="/ordersbooking">
                       <div className="cursor-pointer border rounded-md hover:opacity-80 duration-300 hover:border-blue-700 hover:bg-blue-50 hover:rounded-md">
                         <div className="flex text-sm p-2 items-stretch md:items-center">
                           {item.label}

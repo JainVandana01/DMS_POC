@@ -1,17 +1,11 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import Header from "../components/Header";
 import Grid from "../components/Grid/Grid";
-
 import { fetchOrderList } from "../api/fetchFunction";
-
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 
 const Dashboard: NextPage = () => {
-  const { data, error, isError, isLoading } = useQuery(
-    ["order"],
-    fetchOrderList
-  );
+  const { data, error, isError, isLoading } = useQuery(["order"],fetchOrderList);
   const bookingItems = [
     [
       { label: "Pre-Booking", id: 1 },
@@ -54,8 +48,6 @@ const Dashboard: NextPage = () => {
     { label: "Sales Masters", id: 5 },
   ];
 
-  //const data = getStaticProps();
-
   if (isLoading) return <div>Loading...</div>;
   if (!data) return <div>No Data!</div>;
   if (isError) return <div>Error!</div>;
@@ -77,7 +69,7 @@ const Dashboard: NextPage = () => {
                         key={item.id}
                         href={
                           item.label === "Order-Booking"
-                            ? "/ordersList"
+                            ? "/ordersBooking"
                             : `/${item.id}`
                         }
                       >

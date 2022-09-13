@@ -1,5 +1,5 @@
 const calculateRange = (data: any, rowsPerPage: any) => {
-  const range = [];
+  const range : number[] = [];
   const num = Math.ceil(data.length / rowsPerPage);
   for (let i = 1; i <= num; i++) {
     range.push(i);

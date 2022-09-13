@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const App = () => {
+const Start = () => {
   return (
     <ul>
       <li>
@@ -21,4 +21,4 @@ const App = () => {
     </ul>
   );
 };
-export default App;
+export default Start;
