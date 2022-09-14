@@ -5,15 +5,18 @@ import { calculateRange, sliceData } from "../utils/table-pagination";
 import Image from "next/image";
 import * as api from "../utils/usersApi";
 import { useQuery } from "react-query";
+import { atom, useAtom } from 'jotai'
+
+const listAtom = atom([])
 
 const OrdersBooking = () => {
   const [pagination, setPagination] = useState<number[]>([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
 
-  const { data, error, isLoading } = useQuery("users", api.getUsers);
+  const { data, error, isLoading } = useQuery("users", api.getUsers, {refetchOnWindowFocus: false});
   console.log("order listss", data);
-  const [orders, setOrders] = useState(all_orders);
+  const [orders, setOrders] = useState([]);
 
   //const [orders, setOrders] = useState(data);
 
@@ -24,18 +27,18 @@ const OrdersBooking = () => {
 
   // Search
   const __handleSearch = (event:any) => {
-    setSearch(event.target.value);
-    if (event.target.value !== "") {
-      let search_results = orders.filter(
-        (item) =>
-          item.customerName.toLowerCase().includes(search.toLowerCase()) ||
-          item.customerId.toLowerCase().includes(search.toLowerCase()) ||
-          item.orderNumber.toLowerCase().includes(search.toLowerCase())
-      );
-      setOrders(search_results);
-    } else {
-      __handleChangePage(1);
-    }
+    // setSearch(event.target.value);
+    // if (event.target.value !== "") {
+    //   let search_results = orders.filter(
+    //     (item) =>
+    //       item.customerName.toLowerCase().includes(search.toLowerCase()) ||
+    //       item.customerId.toLowerCase().includes(search.toLowerCase()) ||
+    //       item.orderNumber.toLowerCase().includes(search.toLowerCase())
+    //   );
+    //   setOrders(search_results);
+    // } else {
+    //   __handleChangePage(1);
+    // }
   };
 
   // Change Page
@@ -110,7 +113,7 @@ const OrdersBooking = () => {
                             {item.email}
                           </td>
                           <td className="text-sm text-gray-900 font-light  whitespace-nowrap">
-                            <Link
+                            {/* <Link
                               // padding=".8rem"
                               // display="flex"
                               // as={RouterLink}
@@ -128,7 +131,7 @@ const OrdersBooking = () => {
                                 src="/eye.png"
                                 alt="suzuki-logo"
                               />
-                            </Link>
+                            </Link> */}
                           </td>
                           <td className="text-sm text-gray-900 font-light px-0 py-4 whitespace-nowrap">
                             <Image
