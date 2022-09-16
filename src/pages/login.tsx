@@ -1,22 +1,25 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { atom, useAtom } from "jotai";
+import { useReducerAtom } from "jotai/utils";
 import type { NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
-import { loginData } from "../store";
+import { loginReducer } from "../utils/reducer";
+import { loginData } from "../utils/store";
 
 const usernameAtom = atom<string>("");
 const passwordAtom = atom<string>("");
 const showPasswordAtom = atom<boolean>(false);
+const countAtom = atom<number>(0);
 
 const Login: NextPage = () => {
   const [username, setUsername] = useAtom(usernameAtom);
   const [password, setPassword] = useAtom(passwordAtom);
   const [showPassword, setShowPassword] = useAtom(showPasswordAtom);
-
   const router = useRouter();
+
+  const [count, dispatch] = useReducerAtom(countAtom, loginReducer);
 
   const [, setLoginData] = useAtom(loginData);
 
@@ -24,14 +27,9 @@ const Login: NextPage = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
-
   const onLoginClick = (e: any) => {
     setLoginData({ username, password });
+    dispatch({ type: "INCREASE" });
     e.preventDefault();
     router.push("/home");
   };
@@ -67,6 +65,7 @@ const Login: NextPage = () => {
             id="outlined-basic"
             label="Username"
             variant="outlined"
+            data-testid={"test-username"}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             fullWidth
@@ -79,6 +78,7 @@ const Login: NextPage = () => {
             id="outlined-basic"
             label="Password"
             variant="outlined"
+            data-testid={"test-password"}
             value={password}
             type={showPassword ? "text" : "password"}
             onChange={(e) => setPassword(e.target.value)}
@@ -89,7 +89,7 @@ const Login: NextPage = () => {
                   <IconButton
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
+                    data-testid="test-toggle"
                     edge="end"
                   >
                     {showPassword ? (
@@ -108,6 +108,7 @@ const Login: NextPage = () => {
           <button
             type="submit"
             className="btn btn-primary"
+            data-testid={"test-login"}
             style={{
               backgroundColor: "red",
               width: "100%",

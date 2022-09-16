@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import Grid from "../components/Grid/Grid";
 import Header from "../components/Header";
-import { loginData } from "../store";
+import { loginData } from "../utils/store";
 
 const Home: NextPage = () => {
   const bookingItems = [

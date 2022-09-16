@@ -1,14 +1,9 @@
 import { atom } from "jotai";
-import { atomWithStorage, createJSONStorage } from 'jotai/utils'
-// const storage = createJSONStorage(() => AsyncStorage)
-// const userId = atomWithStorage('user-id-key', null, storage)
 
 export const loginData = atom({
   username: '',
   password: '',
 });
-
-// export const useLocalStoreAtom = ()
 
 export const atomWithLocalStorage = (key: string, initialValue: any) => {
   const getInitialValue = () => {

@@ -12,12 +12,6 @@ const Registration = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
-
   return (
     <div>
       <div className="flex items-center cursor-pointer">
@@ -49,6 +43,7 @@ const Registration = () => {
             id="outlined-basic"
             label="Name"
             variant="outlined"
+            data-testid={'test-name'}
             value={name}
             onChange={(e) => setName(e.target.value)}
             fullWidth
@@ -61,6 +56,7 @@ const Registration = () => {
             id="outlined-basic"
             label="Username"
             variant="outlined"
+            data-testid={'test-email'}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             fullWidth
@@ -71,6 +67,7 @@ const Registration = () => {
             id="outlined-basic"
             label="Password"
             variant="outlined"
+            data-testid={'test-password'}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type={showPassword ? "text" : "password"}
@@ -81,7 +78,7 @@ const Registration = () => {
                   <IconButton
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
+                    data-testid="test-toggle"
                     edge="end"
                   >
                     {showPassword ? (
@@ -100,6 +97,7 @@ const Registration = () => {
           <button
             type="submit"
             className="btn btn-primary"
+            data-testid={'test-signup'}
             style={{
               backgroundColor: "red",
               width: "100%",
