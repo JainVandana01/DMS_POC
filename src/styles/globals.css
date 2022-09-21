@@ -70,3 +70,7 @@ html,
 .forgot-password a {
   color: #167bff;
 }
+
+table {
+  margin-top: 50px;
+}

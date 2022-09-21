@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 
-export const loginData = atom({
+export const loginData: any = atom({
   username: '',
   password: '',
 });

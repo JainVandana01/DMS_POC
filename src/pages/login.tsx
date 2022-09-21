@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { atom, useAtom } from "jotai";
-import { useReducerAtom } from "jotai/utils";
 import type { NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { loginReducer } from "../utils/reducer";
 import { loginData } from "../utils/store";
 
 const usernameAtom = atom<string>("");
@@ -19,8 +17,6 @@ const Login: NextPage = () => {
   const [showPassword, setShowPassword] = useAtom(showPasswordAtom);
   const router = useRouter();
 
-  const [count, dispatch] = useReducerAtom(countAtom, loginReducer);
-
   const [, setLoginData] = useAtom(loginData);
 
   const handleClickShowPassword = () => {
@@ -29,7 +25,6 @@ const Login: NextPage = () => {
 
   const onLoginClick = (e: any) => {
     setLoginData({ username, password });
-    dispatch({ type: "INCREASE" });
     e.preventDefault();
     router.push("/home");
   };
